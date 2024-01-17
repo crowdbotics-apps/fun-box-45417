@@ -1,15 +1,7 @@
 import React, { useState } from "react";
-import {
-  Text,
-  StyleSheet,
-  View,
-  SafeAreaView,
-  TextInput,
-  Switch,
-  ScrollView
-} from "react-native";
+import { Text, StyleSheet, View, SafeAreaView, TextInput, Switch, ScrollView } from "react-native";
 
-const AccountSettingsScreen = (params) => {
+const AccountSettingsScreen = params => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [cardNumber, setCardNumber] = useState("");
@@ -17,8 +9,22 @@ const AccountSettingsScreen = (params) => {
   const [emailNotifications, setEmailNotifications] = useState(false);
   const [smsNotifications, setSmsNotifications] = useState(false);
   const [deactivateAccount, setDeactivateAccount] = useState(false);
-  return (
-    <SafeAreaView style={styles.container}>
+
+  const handleNameChange = text => setName(text);
+
+  const handleEmailChange = text => setEmail(text);
+
+  const handleCardNumberChange = text => setCardNumber(text);
+
+  const handleNotificationsChange = value => setNotifications(value);
+
+  const handleEmailNotificationsChange = value => setEmailNotifications(value);
+
+  const handleSmsNotificationsChange = value => setSmsNotifications(value);
+
+  const handleDeactivateAccountChange = value => setDeactivateAccount(value);
+
+  return <SafeAreaView style={styles.container}>
       <ScrollView>
         <View style={styles.subContainer}>
           <Text style={styles.subText}>Subscription</Text>
@@ -37,78 +43,37 @@ const AccountSettingsScreen = (params) => {
           <Text style={styles.billingText}>Billing information</Text>
           <View style={styles.nameInput}>
             <Text style={styles.inputText}>Full Name</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Enter your full name"
-              placeholderTextColor="#9B9B9B"
-              autoCapitalize="none"
-              autoCorrect={false}
-              value={name}
-              onChangeText={(text) => setName(text)}
-            />
+            <TextInput style={styles.input} placeholder="Enter your full name" placeholderTextColor="#9B9B9B" autoCapitalize="none" autoCorrect={false} value={name} onChangeText={handleNameChange} />
           </View>
           <View style={styles.nameInput}>
             <Text style={styles.inputText}>Email Address</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Enter your Email Address"
-              placeholderTextColor="#9B9B9B"
-              autoCapitalize="none"
-              autoCorrect={false}
-              value={email}
-              onChangeText={(text) => setEmail(text)}
-            />
+            <TextInput style={styles.input} placeholder="Enter your Email Address" placeholderTextColor="#9B9B9B" autoCapitalize="none" autoCorrect={false} value={email} onChangeText={handleEmailChange} />
           </View>
           <View style={styles.nameInput}>
             <Text style={styles.inputText}>Card number</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Enter your Card Number"
-              placeholderTextColor="#9B9B9B"
-              autoCapitalize="none"
-              autoCorrect={false}
-              value={cardNumber}
-              onChangeText={(text) => setCardNumber(text)}
-            />
+            <TextInput style={styles.input} placeholder="Enter your Card Number" placeholderTextColor="#9B9B9B" autoCapitalize="none" autoCorrect={false} value={cardNumber} onChangeText={handleCardNumberChange} />
           </View>
         </View>
         <View style={styles.togglesContainer}>
           <View style={styles.toggle}>
             <Text style={styles.toggleText}>Notifications</Text>
-            <Switch
-              style={styles.toggleSwitch}
-              value={notifications}
-              onValueChange={(value) => setNotifications(value)}
-            />
+            <Switch style={styles.toggleSwitch} value={notifications} onValueChange={handleNotificationsChange} />
           </View>
           <View style={styles.toggle}>
             <Text style={styles.toggleText}>Email Notifications</Text>
-            <Switch
-              style={styles.toggleSwitch}
-              value={emailNotifications}
-              onValueChange={(value) => setEmailNotifications(value)}
-            />
+            <Switch style={styles.toggleSwitch} value={emailNotifications} onValueChange={handleEmailNotificationsChange} />
           </View>
           <View style={styles.toggle}>
             <Text style={styles.toggleText}>SMS Notifications</Text>
-            <Switch
-              style={styles.toggleSwitch}
-              value={smsNotifications}
-              onValueChange={(value) => setSmsNotifications(value)}
-            />
+            <Switch style={styles.toggleSwitch} value={smsNotifications} onValueChange={handleSmsNotificationsChange} />
           </View>
           <View style={styles.toggle}>
             <Text style={styles.toggleText}>Deactivate Account</Text>
-            <Switch
-              style={styles.toggleSwitch}
-              value={deactivateAccount}
-              onValueChange={(value) => setDeactivateAccount(value)}
-            />
+            <Switch style={styles.toggleSwitch} value={deactivateAccount} onValueChange={handleDeactivateAccountChange} />
           </View>
         </View>
       </ScrollView>
-    </SafeAreaView>
-  );
+    </SafeAreaView>;
 };
 
 const styles = StyleSheet.create({
@@ -141,16 +106,12 @@ const styles = StyleSheet.create({
   planDes: {
     flex: 0.4,
     padding: 10,
-    // borderWidth: 1,
-    // borderColor: '#979797',
     justifyContent: "center",
     alignItems: "flex-start"
   },
   subPricing: {
     flex: 0.6,
     padding: 10,
-    // borderWidth: 1,
-    // borderColor: '#979797',
     flexDirection: "row",
     alignItems: "flex-end",
     justifyContent: "center"
@@ -166,8 +127,7 @@ const styles = StyleSheet.create({
   },
   billingContainer: {
     flex: 0.5,
-    paddingHorizontal: 20 // borderWidth: 1,
-    // borderColor: '#979797',
+    paddingHorizontal: 20
   },
   billingText: {
     fontSize: 16,
